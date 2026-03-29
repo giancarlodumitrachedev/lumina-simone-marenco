@@ -3,7 +3,7 @@ Questo file contiene tutte le decisioni, le direttive visive e operative concord
 DEVE essere letto prima di ogni singolo step di implementazione.
 
 ## 1. Palette Colori e Regola 60/30/10
-- **Sfondo (60%):** Perla Tenue (`#F7F9FB`) - Pulito e morbido. Usato come colore dominante (es. sfondi, sezioni).
+- **Sfondo (60%):** Avorio Pastello (`#FBF9F6`) - Un bianco pastello più caldo e calmante. Usato come colore dominante (es. sfondi, sezioni).
 - **Secondario (30%):** Blu Nebbia (`#C4D4E0`) - Usato per sfondi delicati, bordi, schede.
 - **Accento/Primario (10%):** Blu Ardesia Tenue (`#5A7D9A`) - Calmante ma autorevole.
 - **Testo/Focus:** Blu Navy Scuro (`#1A365D`) - Usato per testi altamente leggibili e call to action importanti (es. bottoni "Prenota un appuntamento").
