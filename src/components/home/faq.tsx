@@ -1,38 +1,35 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Plus, Minus } from "lucide-react";
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ChevronDown } from "lucide-react";
 
 const faqs = [
   {
-    q: "What is therapy?",
-    a: "Therapy is a process of meeting with a therapist to resolve problematic behaviors, beliefs, feelings, relationship issues, and/or somatic responses."
+    question: "Quanto dura generalmente una seduta?",
+    answer: "Una seduta di psicoterapia dura in media 50-60 minuti. Il primo colloquio conoscitivo può richiedere leggermente più tempo per permettere una raccolta completa delle informazioni anamnestiche."
   },
   {
-    q: "How often should I go to therapy?",
-    a: "It depends on your individual needs. Usually, sessions are held once a week, but can be more or less frequent."
+    question: "Come funziona il primo colloquio?",
+    answer: "Il primo incontro serve a conoscerci. Ascolterò il motivo per cui hai deciso di rivolgerti a me e valuteremo insieme se e come iniziare un percorso. Non c'è alcun obbligo di continuare se non ti senti a tuo agio."
   },
   {
-    q: "How long does a session last?",
-    a: "A typical therapy session lasts for 45 to 50 minutes."
+    question: "Ogni quanto avvengono gli incontri?",
+    answer: "Generalmente propongo incontri a cadenza settimanale o quindicinale, a seconda della situazione e degli obiettivi terapeutici. La frequenza viene sempre concordata insieme e può variare nel corso del tempo."
   },
   {
-    q: "Is everything I say confidential?",
-    a: "Yes, confidentiality is a cornerstone of therapy. Exceptions only occur in cases of imminent risk to self or others."
-  },
-  {
-    q: "Do you prescribe medication?",
-    a: "As psychologists, we do not prescribe medication. However, we can refer you to a trusted psychiatrist if medication is deemed necessary."
+    question: "È garantito il segreto professionale?",
+    answer: "Assolutamente sì. Tutto ciò che viene condiviso durante le sedute è strettamente confidenziale e protetto dal Codice Deontologico degli Psicologi Italiani (Art. 11), a totale tutela della tua privacy."
   }
 ];
 
 export function FaqSection() {
-  const [openIdx, setOpenIdx] = useState<number | null>(0);
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
     <section className="py-24 bg-background">
       <div className="max-w-4xl mx-auto px-6">
+        
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -40,51 +37,59 @@ export function FaqSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-5xl font-heading font-semibold text-foreground">
-            Frequently asked question
+          <span className="text-primary/80 font-semibold tracking-wider uppercase text-sm mb-4 block">
+            Domande Frequenti
+          </span>
+          <h2 className="text-secondary-foreground font-heading text-4xl md:text-5xl font-semibold mb-6">
+            Hai dei dubbi?
           </h2>
+          <p className="text-lg text-foreground/80">
+            Ecco le risposte alle domande più comuni sul percorso terapeutico.
+          </p>
         </motion.div>
 
-        <div className="flex flex-col gap-4">
+        <div className="space-y-4">
           {faqs.map((faq, idx) => {
-            const isOpen = openIdx === idx;
+            const isOpen = openIndex === idx;
             return (
-              <motion.div
+              <motion.div 
                 key={idx}
-                initial={{ opacity: 0, y: 10 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.4, delay: idx * 0.1 }}
-                className={`border-b border-border/50 pb-4 overflow-hidden transition-all duration-300 ${isOpen ? "bg-secondary/20 rounded-xl p-6 border-transparent" : "p-4"}`}
+                className="border border-border/60 rounded-2xl overflow-hidden bg-card"
               >
                 <button
-                  onClick={() => setOpenIdx(isOpen ? null : idx)}
-                  className="w-full flex items-center justify-between text-left focus:outline-none"
+                  onClick={() => setOpenIndex(isOpen ? null : idx)}
+                  className="w-full flex items-center justify-between p-6 text-left hover:bg-secondary/5 transition-colors"
                 >
-                  <span className={`text-lg md:text-xl font-medium transition-colors ${isOpen ? "text-primary" : "text-foreground"}`}>
-                    {faq.q}
+                  <span className="font-semibold text-lg text-secondary-foreground pr-8">
+                    {faq.question}
                   </span>
-                  <div className={`shrink-0 ml-4 p-1 rounded-full transition-colors ${isOpen ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground"}`}>
-                    {isOpen ? <Minus className="w-5 h-5" /> : <Plus className="w-5 h-5" />}
-                  </div>
+                  <ChevronDown 
+                    className={`w-5 h-5 text-primary shrink-0 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`} 
+                  />
                 </button>
-                <motion.div
-                  initial={false}
-                  animate={{ height: isOpen ? "auto" : 0, opacity: isOpen ? 1 : 0, marginTop: isOpen ? 16 : 0 }}
-                  className="text-muted-foreground leading-relaxed overflow-hidden"
-                >
-                  {faq.a}
-                </motion.div>
+                <AnimatePresence>
+                  {isOpen && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3, ease: "easeInOut" }}
+                    >
+                      <div className="p-6 pt-0 text-foreground/70 leading-relaxed border-t border-border/20 mt-2">
+                        {faq.answer}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </motion.div>
             );
           })}
         </div>
-        
-        <div className="mt-12 text-center">
-          <button className="px-8 py-3 rounded-full border border-border text-foreground font-medium hover:bg-secondary hover:text-primary hover:border-secondary transition-colors text-sm">
-            For personal answers
-          </button>
-        </div>
+
       </div>
     </section>
   );
