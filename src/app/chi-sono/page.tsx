@@ -1,6 +1,6 @@
 import Image from "next/image";
-import { getDemoParams } from "@/lib/demo-params";
 import { SmartLink } from "@/components/smart-link";
+import { getDemoParams } from "@/lib/demo-params";
 
 export const metadata = { title: "Chi Sono | Lumina Psicologo" };
 
@@ -37,25 +37,20 @@ export default async function ChiSonoPage({
               {params.name} <span className="text-foreground/50 font-normal">| {params.fieldDisplay}</span>
             </h2>
             <p className="mb-4">
-              La mia passione per la psicologia nasce dal desiderio profondo di comprendere l'essere umano in tutte le sue sfaccettature. 
-              Nel corso della mia carriera, ho affinato un approccio terapeutico che integra competenze cliniche rigorose con una reale 
-              ed empatica presenza relazionale.
+              Sono uno psicologo e psicoterapeuta psicoanalitico. Svolgo l&apos;attività professionale e clinica dal 2011.
             </p>
             <p className="mb-4">
-              Mi sono specializzato attraverso anni di studio e pratica clinica, sviluppando una solida esperienza nel trattamento 
-              delle {params.fieldDisplay.toLowerCase()} e delle difficoltà emotive in generale. Il mio obiettivo principale è fornire uno spazio sicuro dove 
-              i pazienti possano esplorare se stessi senza il timore di essere giudicati.
+              In questi anni, dopo aver conseguito la specializzazione in psicoterapia, ho continuato ininterrottamente la mia formazione per approfondire e ampliare le aree cliniche di mia competenza. Credo fermamente nell&apos;importanza dell&apos;aggiornamento continuo per poter offrire ai miei pazienti il supporto più efficace possibile.
             </p>
             <p className="mb-8">
-              Lavorando insieme, cercheremo non solo di alleviare il sintomo o il disagio immediato, ma di rintracciare le radici 
-              profonde delle dinamiche interiori, promuovendo un cambiamento autentico e duraturo.
+              Mi occupo di svariate dinamiche cliniche: dai disturbi d&apos;ansia a quelli dell&apos;umore, supportando le persone attraverso le problematiche di coppia, le questioni relazionali legate al ciclo di vita, lo stress lavoro correlato (burnout), la genitorialità, le problematiche adolescenziali, fino ai disturbi dell&apos;apprendimento e dell&apos;alimentazione.
             </p>
             
             <SmartLink
               href="/contatti"
-              className="inline-block bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-3 rounded-md text-lg font-medium transition-all shadow-md mt-4 no-underline"
+              className="inline-block bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-3 rounded-md text-lg font-medium transition-all shadow-md no-underline"
             >
-              Prenota un primo colloquio
+              Richiedi una consulenza
             </SmartLink>
           </div>
         </div>
